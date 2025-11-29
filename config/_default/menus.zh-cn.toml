@@ -1,0 +1,75 @@
+############# 简体中文 导航 ##############
+
+# 主菜单
+[[main]]
+identifier = "home"
+name = "首页"
+url = "/"
+weight = 1
+
+[[main]]
+identifier = "about"
+name = "关于"
+url = "/about"
+weight = 2
+
+[[main]]
+identifier = "elements"
+name = "元素"
+url = "/elements"
+weight = 3
+
+[[main]]
+identifier = "pages"
+weight = 4
+name = "页面"
+
+[[main]]
+identifier = "blog"
+parent = "pages"
+name = "博客"
+url = "/blog"
+
+[[main]]
+identifier = "contact"
+parent = "pages"
+name = "联系"
+url = "/contact"
+
+[[main]]
+identifier = "authors"
+parent = "pages"
+name = "作者"
+url = "/authors"
+
+[[main]]
+identifier = "categories"
+parent = "pages"
+name = "分类"
+url = "/categories"
+
+[[main]]
+identifier = "404"
+parent = "pages"
+name = "404 页面"
+url = "/404"
+
+
+# 页脚菜单
+[[footer]]
+identifier = "about"
+name = "关于"
+url = "/about"
+weight = 1
+
+[[footer]]
+identifier = "elements"
+name = "元素"
+url = "/elements"
+weight = 2
+
+[[footer]]
+identifier = "privacy"
+name = "隐私政策"
+url = "/privacy-policy"
+weight = 3
