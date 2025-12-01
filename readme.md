@@ -1,234 +1,187 @@
-<h1 align="center">Hugo + Tailwind CSS Starter and Boilerplate</h1>
+# Hugoplate：基于Hugo和Tailwind CSS的免费启动模板和样板
 
-<p align="center">Hugoplate is a free starter template built with Hugo and Tailwind CSS v4.0, providing everything you need to jumpstart your Hugo project and save valuable time.</p>
+[Hugoplate GitHub 仓库](https://github.com/zeon-studio/hugoplate)
 
-<p align="center">Made with ♥ by <a href="https://zeon.studio/"> Zeon Studio</a></p>
-<p align=center> If you find this project useful, please give it a ⭐ to show your support.</p>
+---
 
-<h2 align="center"> <a target="_blank" href="https://zeon.studio/preview?project=hugoplate" rel="nofollow">👀 Demo</a> | <a  target="_blank" href="https://pagespeed.web.dev/analysis/https-hugoplate-netlify-app/6lyxjw6t4r?form_factor=desktop">Page Speed (95+)🚀</a>
-</h2>
+![Hugo版本](https://img.shields.io/static/v1?label=min-HUGO-version&message=0.151.0&color=f00&logo=hugo)
+![MIT许可证](https://img.shields.io/github/license/zeon-studio/hugoplate)
+![代码大小](https://img.shields.io/github/languages/code-size/zeon-studio/hugoplate)
+![贡献者](https://img.shields.io/github/contributors/zeon-studio/hugoplate)
 
-<p align="center">
-  <a href="https://github.com/gohugoio/hugo/releases/tag/v0.151.0" alt="Contributors">
-    <img alt="hugo version" src="https://img.shields.io/static/v1?label=min-HUGO-version&message=0.151.0&color=f00&logo=hugo" />
-  </a>
+---
 
-  <a href="https://github.com/zeon-studio/hugoplate/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/zeon-studio/hugoplate" alt="license">
-  </a>
+## 介绍
 
-  <a href="https://github.com/zeon-studio/hugoplate">
-    <img src="https://img.shields.io/github/languages/code-size/zeon-studio/hugoplate" alt="code size">
-  </a>
+Hugoplate 是由 [Zeon Studio](https://zeon.studio/) 开发的一个免费开源启动模板，结合了 Hugo 静态网站生成器和 Tailwind CSS v4.0，提供了一个功能丰富且易于定制的前端样板，帮助用户快速启动 Hugo 项目，提升开发效率。
 
-  <a href="https://github.com/zeon-studio/hugoplate/graphs/contributors">
-    <img src="https://img.shields.io/github/contributors/zeon-studio/hugoplate" alt="contributors">
-  </a>
-</p>
+如果您觉得此项目有用，欢迎给予 ⭐ 支持！
 
-## 🎁 What's Included
+[🌐 在线演示](https://zeon.studio/preview?project=hugoplate) | [🚀 页面速度测试（95+）](https://pagespeed.web.dev/analysis/https-hugoplate-netlify-app/6lyxjw6t4r?form_factor=desktop)
 
-We have included almost everything you need to start your Hugo project. Let's see what's included in this template:
+---
 
-### 📌 Key Features
+## 主要功能
 
-- 👥 Multi-Authors
-- 🎯 Similar Posts Suggestion
-- 🔍 Search Functionality
-- 🌑 Dark Mode
-- 🏷️ Tags & Categories
-- 🔗 Netlify setting pre-configured
-- 📞 Support contact form
-- 📱 Fully responsive
-- 📝 Write and update content in Markdown
-- 💬 Disqus Comment
-- 🔳 Syntax Highlighting
+- 👥 多作者支持
+- 🎯 相关文章推荐
+- 🔍 搜索功能
+- 🌑 暗黑模式
+- 🏷️ 标签与分类
+- 🔗 预配置 Netlify 部署设置
+- 📞 联系表单支持
+- 📱 完全响应式设计
+- 📝 以 Markdown 格式编写和更新内容
+- 💬 集成 Disqus 评论
+- 🔳 代码语法高亮
 
-### 📄 15+ Pre-designed Pages
+---
 
-- 🏠 Homepage
-- 👤 About
-- 📞 Contact
-- 👥 Authors
-- 👤 Author Single
-- 📝 Blog
-- 📝 Blog Single
-- 🚫 Custom 404
-- 💡 Elements
-- 📄 Privacy Policy
-- 🏷️ Tags
-- 🏷️ Tag Single
-- 🗂️ Categories
-- 🗂️ Category Single
-- 🔍 Search
+## 预设页面（15+）
 
-### 📦 Tech Stack
+- 🏠 首页
+- 👤 关于页面
+- 📞 联系页面
+- 👥 作者列表
+- 👤 作者详情页
+- 📝 博客列表
+- 📝 博客详情页
+- 🚫 自定义 404 页面
+- 💡 元素页面
+- 📄 隐私政策
+- 🏷️ 标签列表与详情页
+- 🗂️ 分类列表与详情页
+- 🔍 搜索页
+
+---
+
+## 技术栈
 
 - [Hugo](https://gohugo.io/)
 - [Tailwind CSS v4.0](https://tailwindcss.com/)
 - [AutoPrefixer](https://autoprefixer.github.io/)
-- [Hugo Modules](https://gohugo.io/hugo-modules/) by [Gethugothemes](https://gethugothemes.com/hugo-modules)
+- [Hugo Modules](https://gohugo.io/hugo-modules/)（由 [Gethugothemes](https://gethugothemes.com/hugo-modules) 提供支持）
 - [Markdown](https://markdownguide.org/)
 - [Prettier](https://prettier.io/)
 - [Jshint](https://jshint.com/)
-- [Netlify](https://www.netlify.com/)
-- [Vercel](https://vercel.com/)
-- [Github Actions](https://github.com/features/actions)
-- [Gitlab Ci](https://docs.gitlab.com/ee/ci/)
-- [AWS Amplify](https://aws.amazon.com/amplify/)
+- 部署平台支持：Netlify、Vercel、GitHub Actions、GitLab CI、AWS Amplify
 
 ---
 
-## 🚀 Getting Started
+## 快速开始
 
-First you need to [clone](https://github.com/zeon-studio/hugoplate) or [download](https://github.com/zeon-studio/hugoplate/archive/refs/heads/main.zip) the template repository, and then let's get started with the following process:
+1. 克隆或下载模板仓库：
 
-### ⚙️ Prerequisites
+```bash
+git clone https://github.com/zeon-studio/hugoplate.git
+```
 
-To start using this template, you need to have some prerequisites installed on your machine.
+或者直接下载 ZIP 包。
 
-- [Hugo Extended v0.144+](https://gohugo.io/installation/)
-- [Node v22+](https://nodejs.org/en/download/)
-- [Go v1.24+](https://go.dev/doc/install)
+2. 安装先决条件：
 
-### 👉 Project Setup
+- Hugo Extended v0.144+
+- Node.js v22+
+- Go v1.24+
 
-We built this custom script to make your project setup easier. It will create a new Hugo theme folder and clone the Hugoplate theme into it. Then move the exampleSite folder into the root directory. So that you can start your Hugo server without going into the exampleSite folder. Use the following command to setup your project.
+3. 设置项目（自动创建主题文件夹并移动示例站点）：
 
 ```bash
 npm run project-setup
 ```
 
-### 👉 Install Dependencies
-
-Install all the dependencies using the following command.
+4. 安装依赖：
 
 ```bash
 npm install
 ```
 
-### 👉 Development Command
-
-Start the development server using the following command.
+5. 启动开发服务器：
 
 ```bash
 npm run dev
 ```
 
-### 🎬 Still Confused? Watch a Quick Video
+6. 如果需要，查看快速入门视频演示：
 
-https://github.com/zeon-studio/hugoplate/assets/58769763/c260c0ae-91be-42ce-b8db-aa7f11f777bd
-
----
-
-## 📝 Customization
-
-This template has been designed with a lot of customization options in mind. You can customize almost anything you want, including:
-
-### 👉 Site Config
-
-You can change the site title, base URL, language, theme, plugins, and more from the `hugo.toml` file.
-
-### 👉 Site Params
-
-You can customize all the parameters from the `config/_default/params.toml` file. This includes the logo, favicon, search, SEO metadata, and more.
-
-### 👉 Colors and Fonts
-
-You can change the colors and fonts from the `data/theme.json` file. This includes the primary color, secondary color, font family, and font size.
-
-### 👉 Social Links
-
-You can change the social links from the `data/social.json` file. Add your social links here, and they will automatically be displayed on the site.
+> [hugoplate-quick-setup.mp4](链接地址请在项目中查找)
 
 ---
 
-## 🛠 Advanced Usage
+## 自定义配置
 
-We have added some custom scripts to make your life easier. You can use these scripts to help you with your development.
+- **站点配置**：编辑 `hugo.toml` 文件，修改站点标题、基础 URL、语言、主题等。
+- **参数配置**：在 `config/_default/params.toml` 中调整 logo、favicon、搜索设置、SEO 元数据等。
+- **颜色与字体**：通过修改 `data/theme.json` 文件中的主色、辅色、字体族和字体大小来定制样式。
+- **社交链接**：编辑 `data/social.json` 文件，自动显示社交媒体链接。
 
-### 👉 Update Theme
+---
 
-If you want to update the theme, then you can use the following command. It will update the theme to the latest version.
+## 进阶功能
+
+- 更新主题：
 
 ```bash
 npm run update-theme
 ```
 
-> **Note:** This command will work after running the `project-setup` script.
-
-### 👉 Update Modules
-
-We have added a lot of modules to this template. You can update all the modules using the following command.
+- 更新所有模块：
 
 ```bash
 npm run update-modules
 ```
 
-### 👉 Remove Dark Mode
-
-If you want to remove dark mode from your project, you can use the following command to remove dark mode from your project.
+- 移除暗黑模式：
 
 ```bash
 npm run remove-darkmode
 ```
 
-> **Note:** This command will work before running the `project-setup` script. If you have already run the `project-setup` command, then you have to run `npm run theme-setup` first, and then you can run this command. Afterward, you can run `npm run project-setup` again.
+> 注意：移除暗黑模式命令需在执行 `project-setup` 前运行，或先运行 `npm run theme-setup`。
 
 ---
 
-## 🚀 Build And Deploy
+## 构建与部署
 
-After you finish your development, you can build or deploy your project almost everywhere. Let's see the process:
-
-### 👉 Build Command
-
-To build your project locally, you can use the following command.
+- 本地构建命令：
 
 ```bash
 npm run build
 ```
 
-### 👉 Deploy Site
+- 支持多平台部署配置：
 
-We have provided 5 different deploy platform configurations with this template, so you can deploy easily.
+  - [Netlify](https://www.netlify.com/)
+  - [Vercel](https://vercel.com/)
+  - [GitHub Actions](https://github.com/features/actions)
+  - [GitLab CI](https://docs.gitlab.com/ee/ci/)
+  - [AWS Amplify](https://aws.amazon.com/amplify/)
 
-- [Netlify](https://www.netlify.com/)
-- [Vercel](https://vercel.com/)
-- [Github Actions](https://github.com/features/actions)
-- [Gitlab Ci](https://docs.gitlab.com/ee/ci/)
-- [AWS Amplify](https://aws.amazon.com/amplify/)
+- 你也可以将构建后的 `public` 文件夹内容部署到任何静态服务器。
 
-And if you want to host some other hosting platforms. Then you can build your project, and you will get a `public` folder. that you can copy and paste on your hosting platform.
-
-> **Note:** You must change the `baseURL` in the `hugo.toml` file. Otherwise, your site will not work properly.
+- 记得根据实际部署更改 `hugo.toml` 中的 `baseURL`。
 
 ---
 
-## 🔒 Guide to Staying Compliant
+## 反馈与许可
 
-### 🐞 Reporting Issues
-
-We use GitHub Issues as the official bug tracker for this Template. Please search [existing issues](https://github.com/zeon-studio/hugoplate/issues). Someone may have already reported the same problem.
-If your problem or idea has not been addressed yet, feel free to [open a new issue](https://github.com/zeon-studio/hugoplate/issues).
-
-### 📝 License
-
-Copyright (c) 2023 - Present, Designed & Developed by [Zeon Studio](https://zeon.studio/)
-
-**Code License:** Released under the [MIT](https://github.com/zeon-studio/hugoplate/blob/main/LICENSE) license.
-
-**Image license:** The images are only for demonstration purposes. They have their license, we don't have permission to share those images.
+- 遇到问题请先搜索已有的 [issues](https://github.com/zeon-studio/hugoplate/issues)，如无相关可新建 issue。
+- 代码采用 [MIT 许可证](https://github.com/zeon-studio/hugoplate/blob/main/LICENSE) 许可。
+- 演示图片仅用于展示，版权归属原作者。
 
 ---
 
-## 🖼️ Showcase
+## 项目展示
 
-List of some projects people are building with [**Hugoplate**!](https://github.com/zeon-studio/hugoplate/discussions/207)
-Don't forget to add yours.
+欢迎查看并提交使用 Hugoplate 构建的项目案例：[Hugoplate Showcase](https://github.com/zeon-studio/hugoplate/discussions/207)
 
 ---
 
-## 💻 Need Customization?
+## 定制服务
 
-If you need a custom theme, theme customization, or complete website development services from scratch, you can [Hire Us](https://zeon.studio/estimate-project).
+如需定制主题、主题修改或网站开发服务，请访问：[Zeon Studio 定制服务](https://zeon.studio/estimate-project)
+
+---
+
+© 2025 Zeon Studio & Hugo Community
+
