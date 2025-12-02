@@ -40,14 +40,15 @@
               {{ time.Format ":date_long" .PublishDate }}
             </li>
           </ul>
-          <!-- 阅读数 -->
-          <span id="view-count-container">
-          👀 <span id="view-count">loading...</span>
-          </span>
-          <!-- 点赞按钮 -->
-          <button id="like-btn" onclick="handleLike()" style="border:none; background:none; cursor:pointer;">
-          ❤️ <span id="like-count">0</span>
-          </button>
+          <!-- 阅读数和点赞 -->
+          <div class="mb-4 flex items-center gap-12">
+            <span id="view-count-container" class="text-sm text-gray-600 dark:text-gray-400">
+              👀 <span id="view-count">loading...</span> 次阅读
+            </span>
+            <button id="like-btn" onclick="handleLike()" style="border:none; background:none; cursor:pointer; padding:0;" class="text-sm text-gray-600 dark:text-gray-400 hover:scale-110 transition-transform">
+              ❤️ <span id="like-count">0</span>
+            </button>
+          </div>
           <div class="content mb-10">
             {{ partial "toc.html" (dict "Class" "blog" "Collapsed" false "TableOfContents" .TableOfContents ) }}
             {{ .Content }}
