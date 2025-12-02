@@ -30,6 +30,15 @@
       </li>
     </ul>
   {{ end }}
+  <!-- 阅读数和点赞数 -->
+  <div class="mb-4 flex items-center gap-8 text-sm text-gray-600 dark:text-gray-400">
+    <span>
+      👀 <span class="view-count" data-slug="{{ .RelPermalink | relURL }}">-</span> 次阅读
+    </span>
+    <span>
+      ❤️ <span class="like-count" data-slug="{{ .RelPermalink | relURL }}">-</span>
+    </span>
+  </div>
   <p class="mb-6">{{ .Summary | plainify }}</p>
   <a class="btn btn-outline-primary btn-sm" href="{{ .RelPermalink }}">
     {{ T "read_more" }}

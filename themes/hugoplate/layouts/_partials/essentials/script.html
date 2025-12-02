@@ -56,3 +56,82 @@
 
 <!-- cookie consent -->
 {{ partialCached "announcement-script.html" . }}
+
+<!-- blog stats (view count & likes) -->
+<script>
+  (function() {
+    const API_BASE = "https://blog-api.vincentshajing.workers.dev";
+    
+    // 批量获取所有卡片的统计数据
+    async function fetchAllBlogStats() {
+      const viewElements = document.querySelectorAll('.view-count[data-slug]');
+      const likeElements = document.querySelectorAll('.like-count[data-slug]');
+      
+      if (viewElements.length === 0 && likeElements.length === 0) {
+        return; // 如果没有统计元素，直接返回
+      }
+      
+      // 收集所有唯一的 slug
+      const slugs = new Set();
+      viewElements.forEach(el => {
+        const slug = el.getAttribute('data-slug').replace(/^\/|\/$/g, '');
+        if (slug) slugs.add(slug);
+      });
+      likeElements.forEach(el => {
+        const slug = el.getAttribute('data-slug').replace(/^\/|\/$/g, '');
+        if (slug) slugs.add(slug);
+      });
+      
+      // 为每个 slug 获取统计数据
+      const requests = [];
+      slugs.forEach(slug => {
+        requests.push(
+          Promise.all([
+            fetch(`${API_BASE}?type=view&slug=${encodeURIComponent(slug)}`)
+              .then(res => res.ok ? res.json() : { count: 0 })
+              .catch(() => ({ count: 0 })),
+            fetch(`${API_BASE}?type=like&slug=${encodeURIComponent(slug)}`)
+              .then(res => res.ok ? res.json() : { count: 0 })
+              .catch(() => ({ count: 0 }))
+          ]).then(([viewData, likeData]) => ({
+            slug,
+            viewCount: viewData.count || 0,
+            likeCount: likeData.count || 0
+          }))
+        );
+      });
+      
+      try {
+        const results = await Promise.all(requests);
+        
+        // 更新 DOM
+        results.forEach(({ slug, viewCount, likeCount }) => {
+          // 更新阅读数
+          document.querySelectorAll(`.view-count[data-slug]`).forEach(el => {
+            const elSlug = el.getAttribute('data-slug').replace(/^\/|\/$/g, '');
+            if (elSlug === slug) {
+              el.innerText = viewCount;
+            }
+          });
+          
+          // 更新点赞数
+          document.querySelectorAll(`.like-count[data-slug]`).forEach(el => {
+            const elSlug = el.getAttribute('data-slug').replace(/^\/|\/$/g, '');
+            if (elSlug === slug) {
+              el.innerText = likeCount;
+            }
+          });
+        });
+      } catch (error) {
+        console.error('Failed to fetch blog stats:', error);
+      }
+    }
+    
+    // 页面加载完成后执行
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', fetchAllBlogStats);
+    } else {
+      fetchAllBlogStats();
+    }
+  })();
+</script>
