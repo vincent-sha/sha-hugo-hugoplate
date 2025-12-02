@@ -106,11 +106,26 @@
   // 替换为你自己的 Worker URL
   const API_BASE = "https://blog-api.vincentshajing.workers.dev";
   
-  // 优化 1: 真正实现去除首尾斜杠，保证 ID 一致性 (e.g. /about/ 和 /about 视为同一个)
-  const POST_SLUG = window.location.pathname.replace(/^\/|\/$/g, "");
+  // 获取并规范化 slug
+  let POST_SLUG = window.location.pathname.replace(/^\/|\/$/g, "");
+  
+  // 如果是首页或空路径，使用特殊标识
+  if (!POST_SLUG) {
+    POST_SLUG = "home";
+  }
 
   // 1. 初始化：获取 View 和 Like 的数量
   async function fetchStats() {
+    // 检查必要的 DOM 元素是否存在
+    const viewCountEl = document.getElementById("view-count");
+    const likeCountEl = document.getElementById("like-count");
+    const likeBtn = document.getElementById("like-btn");
+    
+    if (!viewCountEl || !likeCountEl || !likeBtn) {
+      console.error("Required elements not found");
+      return;
+    }
+
     const viewKey = `viewed:${POST_SLUG}`;
     const likeKey = `liked:${POST_SLUG}`;
     
@@ -118,46 +133,63 @@
     const isViewed = sessionStorage.getItem(viewKey);
     const isLiked = localStorage.getItem(likeKey);
 
-    // 如果已点赞，初始化 UI 状态 (变红)
-    const likeBtn = document.getElementById("like-btn");
+    // 如果已点赞，初始化 UI 状态
     if (isLiked) {
       likeBtn.style.color = "red";
       likeBtn.style.cursor = "default";
+      likeBtn.disabled = true;
     }
 
-    // 优化 2 & 3: 并行请求，且合并阅读数逻辑
+    // 并行请求
     const requests = [];
 
     // --- 阅读数逻辑 ---
-    // 如果本会话没看过 -> POST (自增并返回最新值)
-    // 如果本会话已看过 -> GET (仅获取当前值)
     if (!isViewed) {
       requests.push(
-        fetch(`${API_BASE}?type=view&slug=${POST_SLUG}`, { method: "POST" })
-          .then(res => res.json())
+        fetch(`${API_BASE}?type=view&slug=${encodeURIComponent(POST_SLUG)}`, { method: "POST" })
+          .then(res => {
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            return res.json();
+          })
           .then(data => {
-            document.getElementById("view-count").innerText = data.count;
-            // 标记为已读
+            viewCountEl.innerText = data.count || 0;
             sessionStorage.setItem(viewKey, 'true');
+          })
+          .catch(err => {
+            console.error("View count error:", err);
+            viewCountEl.innerText = "-";
           })
       );
     } else {
       requests.push(
-        fetch(`${API_BASE}?type=view&slug=${POST_SLUG}`)
-          .then(res => res.json())
+        fetch(`${API_BASE}?type=view&slug=${encodeURIComponent(POST_SLUG)}`)
+          .then(res => {
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            return res.json();
+          })
           .then(data => {
-            document.getElementById("view-count").innerText = data.count;
+            viewCountEl.innerText = data.count || 0;
+          })
+          .catch(err => {
+            console.error("View count error:", err);
+            viewCountEl.innerText = "-";
           })
       );
     }
 
     // --- 点赞数逻辑 ---
-    // 总是获取最新点赞数
     requests.push(
-      fetch(`${API_BASE}?type=like&slug=${POST_SLUG}`)
-        .then(res => res.json())
+      fetch(`${API_BASE}?type=like&slug=${encodeURIComponent(POST_SLUG)}`)
+        .then(res => {
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          return res.json();
+        })
         .then(data => {
-          document.getElementById("like-count").innerText = data.count;
+          likeCountEl.innerText = data.count || 0;
+        })
+        .catch(err => {
+          console.error("Like count error:", err);
+          likeCountEl.innerText = "-";
         })
     );
 
@@ -172,17 +204,27 @@
   async function handleLike() {
     const btn = document.getElementById("like-btn");
     const countSpan = document.getElementById("like-count");
+    
+    if (!btn || !countSpan) return;
+    
     const key = `liked:${POST_SLUG}`;
     
-    // 优化 4: 简单的防重复点赞，不再弹窗 alert
+    // 防重复点赞
     if (localStorage.getItem(key)) {
       return; 
     }
 
+    // 防止快速重复点击
+    if (btn.disabled) return;
+    btn.disabled = true;
+
     try {
-      const res = await fetch(`${API_BASE}?type=like&slug=${POST_SLUG}`, { method: "POST" });
+      const res = await fetch(`${API_BASE}?type=like&slug=${encodeURIComponent(POST_SLUG)}`, { method: "POST" });
+      
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      
       const data = await res.json();
-      countSpan.innerText = data.count;
+      countSpan.innerText = data.count || 0;
       
       // 标记为已点赞
       localStorage.setItem(key, 'true');
@@ -190,10 +232,18 @@
       btn.style.cursor = "default";
     } catch (error) {
       console.error("Like failed:", error);
+      // 失败时恢复按钮状态
+      btn.disabled = false;
+      countSpan.innerText = "?";
     }
   }
 
   // 页面加载完成后执行
-  document.addEventListener("DOMContentLoaded", fetchStats);
+  if (document.readyState === 'loading') {
+    document.addEventListener("DOMContentLoaded", fetchStats);
+  } else {
+    // 如果文档已经加载完成，直接执行
+    fetchStats();
+  }
 </script>
 {{ end }}
