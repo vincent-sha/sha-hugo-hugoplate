@@ -8,51 +8,28 @@ url = "/"
 weight = 1
 
 [[main]]
-identifier = "about"
-name = "关于"
-url = "/about"
+identifier = "blog"
+name = "博客"
+url = "/blog"
 weight = 2
 
 [[main]]
-identifier = "elements"
-name = "元素"
-url = "/elements"
+identifier = "categories"
+name = "分类"
+url = "/categories"
 weight = 3
 
 [[main]]
-identifier = "pages"
+identifier = "tags"
+name = "标签"
+url = "/tags"
 weight = 4
-name = "页面"
-
-[[main]]
-identifier = "blog"
-parent = "pages"
-name = "博客"
-url = "/blog"
-
-[[main]]
-identifier = "contact"
-parent = "pages"
-name = "联系"
-url = "/contact"
 
 [[main]]
 identifier = "authors"
-parent = "pages"
 name = "作者"
 url = "/authors"
-
-[[main]]
-identifier = "categories"
-parent = "pages"
-name = "分类"
-url = "/categories"
-
-[[main]]
-identifier = "404"
-parent = "pages"
-name = "404 页面"
-url = "/404"
+weight = 5
 
 
 # 页脚菜单
@@ -63,13 +40,19 @@ url = "/about"
 weight = 1
 
 [[footer]]
+identifier = "contact"
+name = "联系"
+url = "/contact"
+weight = 2
+
+[[footer]]
 identifier = "elements"
 name = "元素"
 url = "/elements"
-weight = 2
+weight = 3
 
 [[footer]]
 identifier = "privacy"
 name = "隐私政策"
 url = "/privacy-policy"
-weight = 3
+weight = 4
