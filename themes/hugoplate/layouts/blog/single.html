@@ -40,6 +40,14 @@
               {{ time.Format ":date_long" .PublishDate }}
             </li>
           </ul>
+          <!-- 阅读数 -->
+          <span id="view-count-container">
+          👀 <span id="view-count">loading...</span>
+          </span>
+          <!-- 点赞按钮 -->
+          <button id="like-btn" onclick="handleLike()" style="border:none; background:none; cursor:pointer;">
+          ❤️ <span id="like-count">0</span>
+          </button>
           <div class="content mb-10">
             {{ partial "toc.html" (dict "Class" "blog" "Collapsed" false "TableOfContents" .TableOfContents ) }}
             {{ .Content }}
@@ -93,4 +101,99 @@
       {{ end }}
     </div>
   </section>
+
+<script>
+  // 替换为你自己的 Worker URL
+  const API_BASE = "https://blog-api.vincentshajing.workers.dev";
+  
+  // 优化 1: 真正实现去除首尾斜杠，保证 ID 一致性 (e.g. /about/ 和 /about 视为同一个)
+  const POST_SLUG = window.location.pathname.replace(/^\/|\/$/g, "");
+
+  // 1. 初始化：获取 View 和 Like 的数量
+  async function fetchStats() {
+    const viewKey = `viewed:${POST_SLUG}`;
+    const likeKey = `liked:${POST_SLUG}`;
+    
+    // 检查本地状态
+    const isViewed = sessionStorage.getItem(viewKey);
+    const isLiked = localStorage.getItem(likeKey);
+
+    // 如果已点赞，初始化 UI 状态 (变红)
+    const likeBtn = document.getElementById("like-btn");
+    if (isLiked) {
+      likeBtn.style.color = "red";
+      likeBtn.style.cursor = "default";
+    }
+
+    // 优化 2 & 3: 并行请求，且合并阅读数逻辑
+    const requests = [];
+
+    // --- 阅读数逻辑 ---
+    // 如果本会话没看过 -> POST (自增并返回最新值)
+    // 如果本会话已看过 -> GET (仅获取当前值)
+    if (!isViewed) {
+      requests.push(
+        fetch(`${API_BASE}?type=view&slug=${POST_SLUG}`, { method: "POST" })
+          .then(res => res.json())
+          .then(data => {
+            document.getElementById("view-count").innerText = data.count;
+            // 标记为已读
+            sessionStorage.setItem(viewKey, 'true');
+          })
+      );
+    } else {
+      requests.push(
+        fetch(`${API_BASE}?type=view&slug=${POST_SLUG}`)
+          .then(res => res.json())
+          .then(data => {
+            document.getElementById("view-count").innerText = data.count;
+          })
+      );
+    }
+
+    // --- 点赞数逻辑 ---
+    // 总是获取最新点赞数
+    requests.push(
+      fetch(`${API_BASE}?type=like&slug=${POST_SLUG}`)
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById("like-count").innerText = data.count;
+        })
+    );
+
+    try {
+      await Promise.all(requests);
+    } catch (error) {
+      console.error("Failed to fetch stats:", error);
+    }
+  }
+
+  // 2. 处理点赞逻辑
+  async function handleLike() {
+    const btn = document.getElementById("like-btn");
+    const countSpan = document.getElementById("like-count");
+    const key = `liked:${POST_SLUG}`;
+    
+    // 优化 4: 简单的防重复点赞，不再弹窗 alert
+    if (localStorage.getItem(key)) {
+      return; 
+    }
+
+    try {
+      const res = await fetch(`${API_BASE}?type=like&slug=${POST_SLUG}`, { method: "POST" });
+      const data = await res.json();
+      countSpan.innerText = data.count;
+      
+      // 标记为已点赞
+      localStorage.setItem(key, 'true');
+      btn.style.color = "red";
+      btn.style.cursor = "default";
+    } catch (error) {
+      console.error("Like failed:", error);
+    }
+  }
+
+  // 页面加载完成后执行
+  document.addEventListener("DOMContentLoaded", fetchStats);
+</script>
 {{ end }}
