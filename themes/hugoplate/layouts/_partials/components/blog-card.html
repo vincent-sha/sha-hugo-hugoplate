@@ -1,46 +1,65 @@
-<div class="bg-body dark:bg-darkmode-body">
-  {{ $image:= .Params.image }}
-  {{ if $image }}
-    {{ partial "image" (dict "Src" $image "Context" .Page "Alt" .Title "Class" "mb-6 w-full rounded") }}
-  {{ end }}
-  <h4 class="mb-3">
-    <a href="{{ .RelPermalink }}">
+<button class="w-full text-left transition-all duration-200 hover:shadow-lg hover:scale-105 cursor-pointer" onclick="window.location.href='{{ .RelPermalink }}'">
+  <div class="bg-body dark:bg-darkmode-body h-full p-4 rounded-lg">
+    {{ $image:= .Params.image }}
+    {{ if $image }}
+      {{ partial "image" (dict "Src" $image "Context" .Page "Alt" .Title "Class" "mb-4 w-full rounded") }}
+    {{ end }}
+    <h4 class="mb-3">
       {{ .Title }}
-    </a>
-  </h4>
-  {{ $categories:= .Params.categories }}
-  {{ if $categories }}
-    <ul class="mb-4">
-      <li class="mr-4 inline-block">
-        <a href="{{ `authors/` | relLangURL }}{{ .Params.Author | urlize }}/">
+    </h4>
+    
+    <!-- 第一行：author、date -->
+    <div class="mb-2 flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+      {{ if .Params.author }}
+        <span>
           <i class="fa-regular fa-circle-user mr-2"></i>{{ .Params.author }}
-        </a>
-      </li>
-      <li class="mr-4 inline-block">
-        <i class="fa-regular fa-folder mr-1"></i>
-        {{ range $i,$p:= $categories }}
+        </span>
+      {{ end }}
+      {{ if .PublishDate }}
+        <span>
+          <i class="fa-regular fa-calendar mr-2"></i>{{ .PublishDate.Format "2006-01-02" }}
+        </span>
+      {{ end }}
+    </div>
+
+    <!-- 第二行：分类 -->
+    {{ $categories:= .Params.categories }}
+    {{ if $categories }}
+      <div class="mb-2 flex flex-wrap items-center gap-2 text-sm">
+        {{ range $categories }}
           <a
             href="{{ `categories/` | relLangURL }}{{ . | urlize | lower }}/"
-            class="ms-1"
-            >{{ . | humanize }}{{ if ne $i (sub (len $categories) 1) }}
-              {{ "," }}
-            {{ end }}
+            class="inline-flex items-center rounded bg-gray-200 px-2 py-1 dark:bg-gray-700"
+            >
+            <i class="fa-regular fa-folder mr-1"></i>{{ . | humanize }}
           </a>
         {{ end }}
-      </li>
-    </ul>
-  {{ end }}
-  <!-- 阅读数和点赞数 -->
-  <div class="mb-4 flex items-center gap-8 text-sm text-gray-600 dark:text-gray-400">
-    <span>
-      👀 <span class="view-count" data-slug="{{ .RelPermalink | relURL }}">-</span> 次阅读
-    </span>
-    <span>
-      ❤️ <span class="like-count" data-slug="{{ .RelPermalink | relURL }}">-</span>
-    </span>
+      </div>
+    {{ end }}
+
+    <!-- 第三行：tags -->
+    {{ $tags:= .Params.tags }}
+    {{ if $tags }}
+      <div class="mb-2 flex flex-wrap items-center gap-2 text-sm">
+        {{ range $tags }}
+          <a
+            href="{{ `tags/` | relLangURL }}{{ . | urlize | lower }}/"
+            class="inline-flex items-center rounded bg-blue-100 px-2 py-1 dark:bg-blue-900"
+            >
+            <i class="fa-regular fa-tag mr-1"></i>{{ . | humanize }}
+          </a>
+        {{ end }}
+      </div>
+    {{ end }}
+
+    <!-- 第四行：阅读次数和点赞 -->
+    <div class="flex items-center gap-8 text-sm text-gray-600 dark:text-gray-400">
+      <span>
+        👀 <span class="view-count" data-slug="{{ .RelPermalink | relURL }}">-</span> 次阅读
+      </span>
+      <span>
+        ❤️ <span class="like-count" data-slug="{{ .RelPermalink | relURL }}">-</span>
+      </span>
+    </div>
   </div>
-  <p class="mb-6">{{ .Summary | plainify }}</p>
-  <a class="btn btn-outline-primary btn-sm" href="{{ .RelPermalink }}">
-    {{ T "read_more" }}
-  </a>
-</div>
+</button>
