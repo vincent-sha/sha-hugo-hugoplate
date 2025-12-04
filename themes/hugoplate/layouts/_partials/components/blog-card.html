@@ -1,5 +1,5 @@
 <button class="w-full text-left transition-all duration-200 hover:shadow-lg hover:scale-105 cursor-pointer" onclick="window.location.href='{{ .RelPermalink }}'">
-  <div class="bg-body dark:bg-darkmode-body h-full p-4 rounded-lg">
+  <div class="bg-light dark:bg-darkmode-light h-full p-4 rounded-lg">
     {{ $image:= .Params.image }}
     {{ if $image }}
       {{ partial "image" (dict "Src" $image "Context" .Page "Alt" .Title "Class" "mb-4 w-full rounded") }}
