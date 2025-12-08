@@ -1,21 +1,19 @@
 ---
 language: zh-cn
-title: John Doe
-email: johndoe@email.com
-image: "/images/avatar.png"
-description: this is meta description
+title: 文森
+email: vincentshajing@gmail.com
+image: /images/author.jpg
+description: 刻苦学习的技术小白
 social:
   - name: github
     icon: fa-brands fa-github
     link: https://github.com
-
   - name: twitter
     icon: fa-brands fa-twitter
     link: https://twitter.com
-
   - name: linkedin
     icon: fa-brands fa-linkedin
     link: https://linkedin.com
 ---
 
-lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostr navigation et dolore magna aliqua.
+一个爱钻研的，热爱生活的，中年技术小白！
