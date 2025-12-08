@@ -17,6 +17,7 @@ collections:
     fields:
       - {label: "Language", name: "language", widget: "hidden", default: "zh-cn"}
       - {label: "Title", name: "title", widget: "string"}
+      - {label: "Slug", name: "slug", widget: "string", required: false, hint: "URL 友好的标识（小写字母、数字和连字符）；留空将从 Title 生成。"}
       - {label: "Date", name: "date", widget: "datetime"}
       - {label: "Meta Title", name: "meta_title", widget: "string", required: false}
       - {label: "Description", name: "description", widget: "text"}
