@@ -5,7 +5,7 @@ slug: hugo-strapi-integration-fast-static-sites
 date: 2025-12-09T14:08:00.000+08:00
 description: 本文介绍如何将静态站点生成器 Hugo 与无头 CMS Strapi 集成，包含整体概念、优势、系统需求、Strapi 配置、Hugo
   拉取数据示例脚本、数据建模与安全最佳实践、以及一个多语言文档站点的实战案例，方便快速搭建高性能、可维护的静态网站。
-image: /images/strapi-cover.webp
+image: /images/strapi-hugo-cover.svg
 categories:
   - 技术教程
 tags:
