@@ -7,7 +7,7 @@ description: 刻苦学习的技术小白
 social:
   - name: github
     icon: fa-brands fa-github
-    link: https://github.com
+    link: https://github.com/vincent-sha
   - name: twitter
     icon: fa-brands fa-twitter
     link: https://twitter.com
