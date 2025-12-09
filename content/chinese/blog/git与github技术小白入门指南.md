@@ -310,7 +310,7 @@ git clean -fd
 
 或者：
 
-```jsx
+```bash
 # 1. 先把本地修改暂时藏起来
 git stash push -m "临时保存的修改"
 
