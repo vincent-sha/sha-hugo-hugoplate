@@ -8,7 +8,7 @@ banner:
   button:
     enable: true
     label: "Get Started Now"
-    link: "https://github.com/zeon-studio/hugoplate"
+    link: "https://vincent-blog.top/blog/"
 
 # Features
 features:
