@@ -129,9 +129,24 @@ Notable sections:
 - Sections: `mainSections` (used for listing content like blog on various pages/widgets).
 - Tracking & Ads: `google_tag_manager`, `google_adsense`.
 - Inline script: `custom_script`.
-- Feature Tables: `[preloader]`, `[navigation_button]`, `[search]`, `[announcement]`, `[metadata]`, `[site_verification]`, `[cookies]`, `[mermaid]`, `[widgets]`, `[google_map]`, `[subscription]`.
+- Feature Tables: `[preloader]`, `[navigation_button]`, `[search]`, `[announcement]`, `[metadata]`, `[site_verification]`, `[cookies]`, `[mermaid]`, `[widgets]`, `[google_map]`, `[subscription]`, `[code]`.
 
 Enable/disable features with `enable = true|false` inside each table.
+
+#### `[code]` — 可复制代码按钮
+
+在博客文章里为每个代码块添加“复制”按钮。
+
+配置项示例（文件 `config/_default/params.toml`）:
+
+```toml
+[code]
+enable_copy = true
+button_text = "复制"
+success_text = "已复制"
+```
+
+开启后，主题会在每个 `pre > code` 右上角插入一个轻量的复制按钮，优先使用现代浏览器的 Clipboard API，如果失败则回退到传统 textarea 复制方法。
 
 ### 3.3 Menus (`menus.en.toml`)
 

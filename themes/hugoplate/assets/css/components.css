@@ -48,3 +48,14 @@
   @apply prose-tr:border-border dark:prose-tr:border-darkmode-border;
   @apply prose-td:relative prose-td:z-10 prose-td:px-3 prose-td:py-[18px] dark:prose-td:text-darkmode-text;
 }
+
+/* code copy button */
+.code-copy-btn {
+  @apply absolute top-2 right-2 z-10 inline-block rounded px-2 py-1 text-sm bg-gray-900 text-white dark:bg-gray-200 dark:text-text-dark opacity-90 hover:opacity-100 transition-opacity;
+  border: none;
+  cursor: pointer;
+}
+
+/* ensure the button doesn't interfere with code scroll */
+pre { position: relative; }
+

@@ -35,6 +35,12 @@ copyright = "Designed & Developed by [Zeon Studio](https://zeon.studio)"
 enable = false
 preloader = "" # use jpg, png, svg or gif format.
 
+# Code copy button in blog posts
+[code]
+enable_copy = true
+button_text = "复制"
+success_text = "已复制"
+
 # Navigation button
 [navigation_button]
 enable = true

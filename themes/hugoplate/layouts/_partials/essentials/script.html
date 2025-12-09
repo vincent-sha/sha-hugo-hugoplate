@@ -19,6 +19,9 @@
 
 <!-- main script -->
 {{ $scripts = $scripts | append (resources.Get "js/main.js") }}
+{{ if site.Params.code.enable_copy }}
+  {{ $scripts = $scripts | append (resources.Get "js/code-copy.js") }}
+{{ end }}
 {{ $scripts = $scripts | resources.Concat "js/script.js" }}
 
 {{ $scriptsLazy = $scriptsLazy | resources.Concat "js/script-lazy.js" }}
@@ -29,6 +32,14 @@
 {{ end }}
 
 {{/* scripts */}}
+{{ if site.Params.code.enable_copy }}
+  <script>
+    window.CODE_COPY_CONFIG = {
+      buttonText: "{{ default "复制" site.Params.code.button_text }}",
+      copiedText: "{{ default "已复制" site.Params.code.success_text }}"
+    };
+  </script>
+{{ end }}
 <script
   crossorigin="anonymous"
   integrity="{{ $scripts.Data.Integrity }}"
